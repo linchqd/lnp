@@ -137,11 +137,6 @@ RUN groupadd php-fpm && useradd -s /sbin/nologin -g php-fpm -M php-fpm \
 
 COPY opt /opt
 
-# setting nginx/php
-RUN chmod +x /opt/bash/* && sh -x /opt/bash/init.sh
-
 EXPOSE 80
 
-VOLUME ["/home/config", "/home/website", "/home/logs/"]
-
-CMD ["supervisord", "-n"]
+CMD ["/bin/bash"]
