@@ -1,0 +1,12 @@
+FROM linchqd/lnp:v1.0
+
+RUN sh /opt/bash/init.sh
+
+COPY wp /home/website/wp
+
+RUN mv /home/website/wp/wp.conf /home/config/nginx/conf.d/wp.conf \
+    && sh /opt/bash/init.sh
+
+VOLUME ["/home/config", "/home/website", "/home/logs"]
+
+CMD ["supervisord","-n"]
